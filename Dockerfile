@@ -6,8 +6,9 @@ FROM ghcr.io/mhsanaei/3x-ui:latest
 # 面板自带的"客户端 IP 限制"功能仍可正常使用。
 ENV XUI_ENABLE_FAIL2BAN=false
 
-# 面板端口（x-ui 默认 54321）
+# 面板端口：官方镜像默认是 2053，这里显式固定为 54321
 # Railway 部署后：Settings -> Networking -> Generate Domain -> 端口填 54321
+ENV XUI_PORT=54321
 EXPOSE 54321
 
 # 代理 inbound 默认端口（面板里建节点时建议用它）
