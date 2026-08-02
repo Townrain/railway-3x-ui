@@ -13,5 +13,5 @@ EXPOSE 54321
 # 代理 inbound 默认端口（面板里建节点时建议用它）
 EXPOSE 8080
 
-# 面板数据库/证书/配置都在这里，保持容器内路径即可
-VOLUME /etc/x-ui
+# 数据持久化：Railway 不支持 Dockerfile 的 VOLUME 指令，
+# 请在 Railway 控制台创建 Volume 并挂载到 /etc/x-ui

@@ -15,7 +15,9 @@
 2. **Projects → New Project → Deploy from GitHub repo**
 3. 选择本仓库（`railway-3x-ui`），Railway 会自动识别 Dockerfile 构建
 4. 等待构建完成（约 2-5 分钟），看到绿色 **Online** 即成功
-5. **Settings → Networking → Generate Domain**，端口填 **54321**（面板端口）
+5. **Settings → Volumes** → 添加 Volume，挂载路径填 `/etc/x-ui`（面板数据持久化，重建不丢）
+6. **Settings → Networking → Generate Domain**，端口填 **54321**（面板端口）
+7. 浏览器打开生成的域名，进入面板登录页
 6. 浏览器打开生成的域名，进入面板登录页
 
 ## 首次登录（重要！）
@@ -70,8 +72,9 @@ UUID：面板里生成的客户端 UUID
 
 ## 数据持久化
 
-- 面板数据库在 `/etc/x-ui`（容器卷，Railway 默认磁盘）
+- 面板数据库在 `/etc/x-ui`，已在部署步骤 5 中通过 **Railway Volume** 挂载
 - 所有节点配置、流量统计、用户数据都存这里，容器重建后不丢
+- 换实例（地区迁移）时：新建 Volume 挂载到 `/etc/x-ui`，把旧 Volume 数据拷贝过去即可
 - 建议定期在面板里做**备份**（面板设置 → 备份），下载 json 存档
 
 ## VPS 上也能用（备用）
